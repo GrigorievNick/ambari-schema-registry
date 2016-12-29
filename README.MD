@@ -1,4 +1,5 @@
 confluentic-schema-registry-ambari
+
 Ambari service package for schema registry http://docs.confluent.io/3.0.0/schema-registry/docs/intro.html#deployment 
 Use sbt packaheBin to build zip file. 
 Copy package to ambari resorces: 
