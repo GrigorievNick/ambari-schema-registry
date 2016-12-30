@@ -56,7 +56,7 @@
         <name>kafkastore.connection.url</name>
         <display-name>Zookeeper url for the Kafka cluster
         </display-name>
-        <value>dn0.dev:2191</value>
+        <value>dn0.dev:2181</value>
         <on-ambari-upgrade add="false"/>
     </property>
     <property>

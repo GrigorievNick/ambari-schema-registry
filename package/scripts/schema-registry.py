@@ -30,9 +30,9 @@ class SchemaRegistry(Script):
                   )
         Execute("rpm --import http://packages.confluent.io/rpm/1.0/archive.key")
         Execute("yum -y install yum-utils")
-        Execute("yum-config-manager --add-repo http://packages.confluent.io/rpm/3.0/6")
+        Execute("yum-config-manager --add-repo http://packages.confluent.io/rpm/3.0")
         Execute("yum -y clean all")
-        Execute("yum install confluent-schema-registry")
+        Execute("yum -y install confluent-schema-registry")
         File(format("{params.schema_registry_conf_file_location}"),
              content=InlineTemplate(params.schema_registry_conf),
              owner=params.user,
