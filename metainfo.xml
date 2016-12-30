@@ -28,6 +28,7 @@ It provides serializers that plug into Kafka clients that handle schema storage 
                         <scriptType>PYTHON</scriptType>
                         <timeout>10000</timeout>
                     </commandScript>
+                    <recovery_enabled>true</recovery_enabled>
                     <dependencies>
                         <dependency>
                             <name>KAFKA/KAFKA_BROKER</name>
