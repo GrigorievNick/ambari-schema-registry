@@ -45,6 +45,7 @@ It provides serializers that plug into Kafka clients that handle schema storage 
             <configuration-dependencies>
                 <config-type>ams-site</config-type>
                 <config-type>schema-registry-env</config-type>
+                <config-type>zoo.cfg</config-type>
             </configuration-dependencies>
             <restartRequiredAfterChange>true</restartRequiredAfterChange>
 

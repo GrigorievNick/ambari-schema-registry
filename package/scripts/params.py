@@ -24,12 +24,24 @@ schema_registry_conf_file_location = schema_registry_conf_dir + "/schema-registr
 schema_registry_conf = config['configurations']['schema-registry-properties']['content']
 log4j_file_location = schema_registry_conf_dir + "/log4j.properties"
 log4j_props = config['configurations']['schema-registry-log4j']['content']
-logsearch_conf_dir = "/etc/ambari-logsearch-logfeeder/conf/"
-logsearch_props_file_location = format("{logsearch_conf_dir}/input.config-schema-registry.json")
+logsearch_conf_dir = default("/configurations/logfeeder-properties/input_config_dir", "/etc/ambari-logsearch-logfeeder/conf/custom")
+logsearch_props_file_location = format("{logsearch_conf_dir}/input.config-schema_registry.json")
 logsearch_props = config['configurations']['schema-registry-logsearch-input']['content']
 
 port = config['configurations']['schema-registry-env']['port']
-kafkastore_connection_url = config['configurations']['schema-registry-env']['kafkastore.connection.url']
+if 'zookeeper_hosts' in config['clusterHostInfo'] and \
+                len(config['clusterHostInfo']['zookeeper_hosts'])>0:
+
+    zookeeper_hosts = config['clusterHostInfo']['zookeeper_hosts']
+    zookeeper_hosts.sort()
+    zk_connects_strings = []
+    zk_port = config['configurations']['zoo.cfg']['clientPort']
+    for zk_host in zookeeper_hosts:
+        zk_connects_strings.append(zk_host+":"+str(zk_port))
+    kafkastore_connection_url = config['configurations']['schema-registry-env']['kafkastore.connection.url']
+    kafkastore_connection_url = ','.join(zk_connects_strings)
+else:
+    kafkastore_connection_url = config['configurations']['schema-registry-env']['kafkastore.connection.url']
 
 # metrics
 host_name = config['hostname'].lower()

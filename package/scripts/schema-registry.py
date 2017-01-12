@@ -28,6 +28,11 @@ class SchemaRegistry(Script):
                   create_parents=True,
                   recursive_ownership=True
                   )
+        Directory(params.logsearch_conf_dir,
+                  mode=777,
+                  create_parents=True,
+                  recursive_ownership=True
+                  )
         Execute("rpm --import http://packages.confluent.io/rpm/1.0/archive.key")
         Execute("yum -y install yum-utils")
         Execute("yum-config-manager --add-repo http://packages.confluent.io/rpm/3.0")
