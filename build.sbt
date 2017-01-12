@@ -6,7 +6,7 @@ version := "3.0.1"
 
 scalaVersion := "2.12.1"
 
-val buildVersion = version + "-build-" =sys.env.getOrElse("BUILD_NUMBER", "local")
+val buildVersion = version + "-build-" + sys.env.getOrElse("BUILD_NUMBER", "local")
 
 val metaInfoConfig: String = "metainfo.xml"
 
