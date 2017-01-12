@@ -6,6 +6,10 @@ version := "3.0.1"
 
 scalaVersion := "2.12.1"
 
+val buildVersion = version + "-build-" =sys.env.getOrElse("BUILD_NUMBER", "local")
+
+val metaInfoConfig: String = "metainfo.xml"
+
 lazy val `ambari-schema-registry` = project
   .in(file("."))
   .enablePlugins(UniversalPlugin)
@@ -15,5 +19,11 @@ lazy val `ambari-schema-registry` = project
     mappings in(Universal, packageBin) ++= directory("package"),
     mappings in(Universal, packageBin) += file("metrics.json") -> "metrics.json",
     mappings in(Universal, packageBin) += file("widgets.json") -> "widgets.json",
-    mappings in(Universal, packageBin) += file("metainfo.xml") -> "metainfo.xml"
+    mappings in(Universal, packageBin) += {
+      val content =
+        IO.read(file(metaInfoConfig)).replaceAll("<version>.*</version>", s"<version>$buildVersion</version>")
+      val templateFile = file(target.value.getAbsolutePath + "/" + metaInfoConfig)
+      IO.write(templateFile, content)
+      templateFile
+    } -> metaInfoConfig
   )
