@@ -4,12 +4,13 @@
     <property>
         <name>content</name>
         <display-name>Schema Registry properties template</display-name>
-        <description>Custom conf properties</description>
+        <description>Custom properties, http://docs.confluent.io/3.0.0/schema-registry/docs/config.html#schemaregistry-config</description>
         <value>listeners=http://0.0.0.0:{{port}}
 kafkastore.connection.url={{kafkastore_connection_url}}
 kafkastore.topic=_schemas
 debug=false
 host.name={{host_name}}
+schema.registry.zk.namespace=schemas
         </value>
         <value-attributes>
             <type>content</type>
