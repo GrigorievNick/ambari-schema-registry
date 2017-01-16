@@ -3,12 +3,13 @@
 <configuration supports_adding_forbidden="true">
     <property>
         <name>content</name>
-        <display-name>kafka-feeder-conf template</display-name>
+        <display-name>Schema Registry properties template</display-name>
         <description>Custom conf properties</description>
         <value>listeners=http://0.0.0.0:{{port}}
 kafkastore.connection.url={{kafkastore_connection_url}}
 kafkastore.topic=_schemas
 debug=false
+host.name={{host_name}}
         </value>
         <value-attributes>
             <type>content</type>
