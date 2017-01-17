@@ -55,8 +55,9 @@
     <property>
         <name>kafkastore.connection.url</name>
         <display-name>Zookeeper url for the Kafka cluster
+        <description>Will be set only if ambari can't find zookeeper service, byt it's own</description>
         </display-name>
-        <value>dn0.dev:2181</value>
+        <value>Changeonlyifzookeepernotfind</value>
         <on-ambari-upgrade add="false"/>
     </property>
     <property>
